@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import service from './service.js';
@@ -97,7 +96,7 @@ function TodoPage() {
               fontWeight: '500',
               transition: 'all 0.2s'
             }} onMouseOver={(e) => e.target.style.background = '#f9f9f9'}
-               onMouseOut={(e) => e.target.style.background = 'white'}>
+              onMouseOut={(e) => e.target.style.background = 'white'}>
               Logout
             </button>
           </div>
@@ -123,7 +122,8 @@ function TodoPage() {
         </header>
         <section style={{ padding: '16px 32px 32px' }}>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-            {todos.map(todo => (
+            {/* זהו הקו המתוקן: מוודא ש-todos הוא מערך לפני המיפוי */}
+            {Array.isArray(todos) && todos.map(todo => (
               <li key={todo.id} style={{
                 background: 'white',
                 marginBottom: '8px',
@@ -134,7 +134,7 @@ function TodoPage() {
                 border: '1px solid #e0e0e0',
                 transition: 'all 0.2s'
               }} onMouseOver={(e) => e.currentTarget.style.background = '#fafafa'}
-                 onMouseOut={(e) => e.currentTarget.style.background = 'white'}>
+                onMouseOut={(e) => e.currentTarget.style.background = 'white'}>
                 <input
                   type="checkbox"
                   checked={todo.isComplete}
@@ -170,10 +170,10 @@ function TodoPage() {
                   e.target.style.background = '#f5f5f5';
                   e.target.style.color = '#e53e3e';
                 }}
-                   onMouseOut={(e) => {
-                     e.target.style.background = 'transparent';
-                     e.target.style.color = '#999';
-                   }}>×</button>
+                  onMouseOut={(e) => {
+                    e.target.style.background = 'transparent';
+                    e.target.style.color = '#999';
+                  }}>×</button>
               </li>
             ))}
           </ul>
